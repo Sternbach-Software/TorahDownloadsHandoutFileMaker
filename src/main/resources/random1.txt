@@ -1,0 +1,83 @@
+·        Offline state
+o   Allow category browsing, but if the cache only contains a few shiurim from the category, when the user scrolls to the bottom of the list, make it keep scrolling and reveal a background of “Offline, not all shiurim are listed”
+o   Is there a way to specifically make sure that the cache has the speaker list and categories list(and recently added?)
+o   How should the sort or filter dialog look different to reflect that the user may unknowingly only be filtering within an incomplete list of shiurim
+o   Clicking the search button should probably also make a toast saying that it is offline and filtering within an incomplete list
+o   Add animation to speaker, category, and shiur cards which are still loading
+o   How is the search page going to look?
+·        Consider the screens for an empty playlist page or
+·         BaseShiurActivity subclass
+o   Maybe an old person stroking their beard in uncertainty and a caption saying “No shiurim downloaded yet”(I am learning how to design flat vectors like all of the Google apps have with drawings of people)
+§  Ideally a different pose selected at random for a different page.
+o   Add timestamp on shiur card to history page of when you listened to it
+·        Terms of service and privacy policy?
+·        Transitions
+o   Home screen button to activity: shared axis z-transition (use fade?) https://material.io/design/motion/choreography.html#transformation
+o   Speaker card to speaker page: container transform
+o   Speaker page -> shiurim list from menu item? Same as home screen buttons (
+o   Shiurim page dialog: fade in
+o   Fast scroller dialog: fade in
+o   Expand search bar: ?
+o   SubCategory button: persistent container
+·        Animations
+o   App startup -> home screen buttons: Bottom up? Fade in?
+o   List of shiurim: bottom up
+o   List of speakers: bottom up
+o   
+ 
+·        Playback page and player
+o   Make player pause instead of duck (search “duck” in UAMP) 
+o   Add concept of queue and add button in bottom sheet for “add to queue”
+o   Create dialog when playing a shiur when one is already playing , as mentioned in slack
+o   Make sure audio sink works properly
+o   Can have other playlists added to it so that it gets updated as the added playlist is updated.
+o   Keep track of which shiurim in the playlist have been listened to and allow the user to mark/unmark them? How should the queue handle finished shiurim? Get rid of them, or mark them as done, and allow the user to go back to them or slide them away/delete them? 
+o   Show progress through playlist on player page (“Shiur 4/6 ° progress: 46 min / 1 hr 17 min”)
+§  Also in notification?
+·        Speaker page 
+o   Figure out how to pass in speaker pictures (or their resource ids).
+o   Make links clickable and text selectable
+·        More from this page
+·        Search page
+o   Should be able to search through local shiurim and web shiurim using a unified shiur page
+o   Add FAB to scroll to top of screen
+§  Add a second FAB to scroll to top of previous recycler view, or make the same button do both?
+·        Playlist page
+o   Keep track of which shiurim in the playlist have been listened to and allow the user to mark/unmark them.
+o   Add Microsoft To-Do style checkbox 
+o   Add another bullet with percentage done playlist
+·        Add search to recently added page
+o   How can the user enable toggle also searching within the description of shiurim (as well as the title), or (on the list of speakers page) the name of a speaker and the description 
+·        Add offline indicator 
+·        Parse JSON and networking 
+·        Either make shiur card title bigger or only allow two lines
+·        Somewhere indicate when last cache was made 
+·        Add browsing capability to categories page and speaker page (like GitLab does - probably use paging library, if not a next page button)
+o   Add bulk download by long press
+·        Make selector getSectionText() based on last name and sort the list based on speaker last name
+·        Make sort out filter dialog use list indices instead of me objects (ask Katz brothers if this is really more efficient)
+o   Add solution for edge case of no series in the list
+o   Fix crash when filtering speaker in Favorites
+o   Disable “Filter” button until onDataRecieved() is called
+o   Implement filter for RangeSeekBar
+o   Implement sorting!!!!
+o   Fix disappearing /reappearing
+o   Change button order to “Cancel, reset, filter”
+o   Add advanced and simple (consider calling it “Single” and “Multiple”, or something similar, so that it is clear to the user that the first mode is only intended for one filter option )
+§  Advanced sort: sort within previous windows
+§  Advanced filter: sort by multiple criteria
+·        Fix crash when switching from day mode to night That
+·        Add “Title: “ to bottom sheet
+·        Room database
+·        In the chooser dialog with two tabs, what if two entries both have the string “Hilchos Brachos”, but one is a series and one is a category? Should they be appended with their ShiurFilterOption? E.g. “Series, Hilchos Brachos”/”Category, Hilchos Brachos”?
+o   Cards should probably wrap onto next line to fit entire contents.
+·        In the chooser dialog, when ShiurFilterOption is HAS_ATTACHMENT or HAS_DESCRIPTION, change the style of the dropdown box to “…ExposedDropDownMenu”
+·        Search through name or description using SearchView? Setting to modify what searchview on shiur recyclerview searches through? Maybe in order to search for description you have to use the unified search page?
+·        Can also use RangeSeekBar and filtering for filtering playlists with 5-15 shiurim, etc.
+·        Shiur card
+o   Make shiur cards fill up
+o   Make icon for currently playing
+·        Change font to google font? Google Sans
+·        Base shiurim activity
+o   Add fast scroll bar with no bubble icon so that the user can scroll faster. How will this work with the pager library when the recycler view gets more entries, or when it is filtered and it gets less (or more for being unfiltered)?
+§  Remove it if there are not enough shiurim to scroll?
